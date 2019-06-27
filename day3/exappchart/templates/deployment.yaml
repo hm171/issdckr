@@ -20,7 +20,10 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name:  APIKEY
+            value:  {{  .Values.APIKEY }}       
           ports:
-            - name: http
-              containerPort: 5000
+            - name: httpappport
+              containerPort: {{ .Values.containerPort }}
               protocol: TCP
