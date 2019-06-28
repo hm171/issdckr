@@ -22,3 +22,22 @@ spec:
           number: 8080
     rewrite:
       uri: /
+  - match:
+    - uri:
+        exact: /weather
+    route:
+    - destination:
+        host: weatherappsvc
+        subset: leastconn
+        port:
+          number: 8080
+    rewrite:
+      uri: /
+  - match:
+    - uri:
+        prefix: /weather
+    route:
+    - destination:
+        host: weatherappsvc
+        port:
+          number: 8080
